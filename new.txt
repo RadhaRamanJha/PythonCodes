@@ -1,9 +1,0 @@
-here i am trying to read a file in other folder
-I am Radha Raman Jha
-To sucessfully make my self a Data Scientist:-
-This is an addition to the demo file
-    even though i am a Btech and Mtech in civil Engineering
-Python
-I will try to print each line in next go
-    i am reading python now a days
-
