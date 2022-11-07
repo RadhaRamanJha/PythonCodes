@@ -13,12 +13,15 @@ class User:
     def greet_user(self):
         '''Welcome message to user on log in'''
         print(f"Welcome {self.first_name} {self.last_name}. Glad you logged in !")
-class Admin(User):
-    def __init__(self, first_name, last_name, privileges = ["can add Post","can delte post","can ban user"]):
-        super().__init__(first_name, last_name)
-        self.privileges = privileges
+class Privilages:
+    def __init__(self, privileges):
+        self.privileges = ["can add Post","can delte post","can ban user"]
     def show_privileges(self):
-        print(f"{self.first_name} {self.last_name} is an Admin and has following privileges {self.privileges[:]}")  
+        print(f"The privileges of an Admin are {self.privileges}")
+class Admin(User):
+    def __init__(self, first_name, last_name):
+        super().__init__(first_name, last_name)  
+        self.privileges = Privilages(self)
 user1 = User("Rahul","Singh")
 user1.age = 29
 user1.gender = "Male"
@@ -33,4 +36,4 @@ user2.emailID = "rekha.goel@imsec.ac.in"
 user2.describe_user()
 user2.greet_user()
 admin1 = Admin("Raman","Jha")
-admin1.show_privileges()
+admin1.privileges.show_privileges()
