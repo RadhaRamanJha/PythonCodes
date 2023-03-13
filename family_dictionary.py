@@ -1,5 +1,5 @@
 import collections
-# importing collections to convert thess dictionary into a list of dictonaries
+# collection imported to creale list of dictionaries
 kameshwar_jha = {'age':65, 'Qualification':'Msc'}
 manjula_jha = {'age' : 55, 'Qualification':"Uttaaar Madhyama"}
 bandana_mishra = {'age': 40, 'Qualifion':"Btech CSE"}
