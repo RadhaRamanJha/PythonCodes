@@ -1,3 +1,4 @@
+"""Basic Python Programs excercises from geeksForgeeks 'https://www.geeksforgeeks.org/python-programming-examples/'"""
 class basic_programs():
     """Return sum of two nummbers"""
     def numbers_sum(number1,number2):
@@ -76,10 +77,48 @@ class basic_programs():
             a,b = b,a+b
             i+=1
         return fibbonaci_number
+    
+    """Checks wheter a number fibbonaci_or_not"""
+    def is_fibbonaci_number(number):
+        a,b = 0,1
+        fibbonaci_number = a
+        while (fibbonaci_number <= number):
+            if (fibbonaci_number == number):
+                print(f"{number} is a fibbonaci number")
+                break
+            fibbonaci_number = b
+            a,b = b,a+b
+        print(f"{number} is not a fibbonaci number")
+    
+    """Returns position of kth multiple of 'n' in fibbonaci-series"""
+    def position_in_fibbonaci_series(n,k):
+        a,b,position = 1,1,1
+        current_fibbonaci_number = a
+        current_k_value = 0
+        while (current_k_value <= k):
+            position +=1
+            if (current_fibbonaci_number % n == 0):
+                current_k_value += 1
+                if(current_k_value == k):
+                    return position
+            current_fibbonaci_number = b
+            a,b = b,a+b
 
-
-
-        
+    """Calculates sum of sqares of first 'n' natural numbers"""
+    def square_sum_of_n_natural_numbers(n):
+        natural_number,square,sum = 1,1,1
+        for natural_number in range (2,n+1):
+            square = natural_number**2
+            sum += square
+        return(sum)
+    
+    """Calculates sum of cubes of first 'n' natural numbers"""
+    def cube_sum_of_n_natural_numbers(n):
+        natural_number,cube,sum = 1,1,1
+        for natural_number in range (2,n+1):
+            cube = natural_number**3
+            sum += cube
+        return(sum)
 
 basic_programs.numbers_sum(467,560)
 basic_programs.max_number(75,77)
@@ -91,3 +130,7 @@ basic_programs.is_armstrong(1634)
 print(f"67 is prime {basic_programs.is_number_prime(67)}")
 basic_programs.return_prime_numbers_in(2,234)
 print(f"The 11th fibbonaci number is {basic_programs.fibbonaci_number(11)}")
+basic_programs.is_fibbonaci_number(12)
+print(f"The sum of square of first 2 natural numbers is {basic_programs.square_sum_of_n_natural_numbers(2)}")
+print(f"The sum of cube of first 2 natural numbers is {basic_programs.cube_sum_of_n_natural_numbers(2)}")
+print(f"The postion of 2nd multiple of 4 in fibbonaci series is {basic_programs.position_in_fibbonaci_series(4,2)}")
