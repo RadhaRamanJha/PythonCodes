@@ -2,10 +2,20 @@ import unittest
 from basic_programs_of_python import basic_programs
 
 class BasicProgramTest(unittest.TestCase):
+    # def setUpClass(self):
+    #    """Creates an instance of basic programs (bp)"""
+    #    print("setUp Class called")
+    # def tearDownClass(self):
+    #    """Creates an instance of basic programs (bp)"""
+    #    print("tearDown Class called\n")
     """Unit Tests for entire basic_program class"""
     def setUp(self):
        """Creates an instance of basic programs (bp)"""
+    #    print("setup called")
        self.bp = basic_programs()
+    # def tearDown(self):
+       """Creates an instance of basic programs (bp)"""
+       print("tearDown called\n")
 
     def test_numbers_sum(self):
         """A Test to verify normal behaviour of  'numbers_sum' function"""
@@ -81,16 +91,18 @@ class BasicProgramTest(unittest.TestCase):
     def test_position_in_fibbonaci_series(self):
         """Checks if true position of number in fibbonaci series being returned"""
         self.assertEqual(7,self.bp.position_in_fibbonaci_series(2,2))
+        print("test fibo test")
     
     def test_square_sum_of_n_natural_numbers(self):
         """Checks wheter true sum of squares being returned"""
         self.assertEqual(5,self.bp.square_sum_of_n_natural_numbers(2))
+        print("test square test")
     
     def test_cube_sum_of_n_natural_numbers(self):
         """Checks wheter true sum of cubes being returned"""
         self.assertEqual(9,self.bp.cube_sum_of_n_natural_numbers(2))
+        print("test cube test")
 
 
-        
 if __name__ == '__main__':
     unittest.main()
