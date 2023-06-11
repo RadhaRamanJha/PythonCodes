@@ -1,6 +1,6 @@
 """clear list program not done yet will do it in last"""
 """List exersises given on geeks for geeks 
-https://www.geeksforgeeks.org/python-program-to-find-second-largest-number-in-a-list/ """
+https://www.geeksforgeeks.org/python-programming-examples/#list """
 class List_programs():
     
     def __init__(self):
@@ -17,10 +17,29 @@ class List_programs():
             except:
                 ValueError(print(f"skipping the non int value {number}"))
         print(f" Orignal list is: {self.new_list}")
+        if (len(self.new_list) != 0):
+            print(f"List obtained after swapping fist and last element is {self.swap_first_last()}")
+            print(f"List obtained after swapping second and third element of the list is {self.swap_two_elements(2,3)}")
+            print(f"Length of the given list is {self.length_of_list()}")
+            print(f"The element 7 is present in list {self.is_element_in_list(7)}")
+            print(f"The sum of list is {self.sum_of_list()}")
+            print(f"The product of list is {self.product_of_list()}")
+            print(f"The smallest number in the list is {self.smallest_num_list()}")
+            print(f"The largest number in the list is {self.largest_num_list()}")
+            print(f"The second largest element of the list is {self.second_lar_num_list()}")
+            print(f"The four largest elements of the list are {self.n_lar_ele_list(4)}")
+            print(f"The even numbers in the list are {self.even_in_list()}")
+            print(f"The odd numbers in the list are {self.odd_in_list()}")
+            print(self.odd_even_in_range(1,100))
+            print(self.poss_and_neg_num_in_list())
+            print(self.poss_neg_in_given_range(-10,10))
+            print(f"List obtained by reversing every element {self.list_reveresed()}")
+        else:
+            print("List is empty so operations cannot be performed")
+
     
     def swap_first_last(self):
         """2.first last element swapped using temp_var"""
-        print("Swapping 1st and last element retuens")
         if (len(self.new_list) >=2):
             temp_var, self.new_list[-1]= self.new_list[-1], self.new_list[0]
             self.new_list[0] = temp_var
@@ -33,14 +52,12 @@ class List_programs():
     def swap_two_elements(self,pos1,pos2):
         """3.Arbitrary elements of list using
         multiple assignment and temp_var"""
-        print("Swapping two element at any arbitrary places")
         temp_var,self.new_list[pos1-1] = self.new_list[pos1-1],self.new_list[pos2-1]
         self.new_list[pos2-1] = temp_var
         return self.new_list
     
     def length_of_list(self):
         """4.Calculation of list length using for loop"""
-        print(f"length of {self.new_list} is: ")
         element_number = 0
         for number in self.new_list:
             element_number += 1
@@ -108,7 +125,7 @@ class List_programs():
         finally returns it"""
         even_list = []
         for number in self.new_list :
-            if (number % 2 == 0) :
+            if (number > 0) and (number % 2 == 0):
                 even_list.append(number)
         if len(even_list) :
             return(even_list)
@@ -118,9 +135,43 @@ class List_programs():
     def odd_in_list(self):
         """13. Used list comprehension to genterate
         odd list and finally returns it"""
-        odd_list = [number for number in self.new_list if type(number) == int if number%2 != 0 ]
+        odd_list = [number for number in self.new_list if number >0 if number%2 != 0 ]
         return(odd_list)
     
+    def odd_even_in_range(self,start,end):
+        """14. Program prints all odd and even
+        nummbers in list in a given range"""
+        even_num_list = []
+        odd_num_list = []
+        for number in self.new_list:
+            if ((number > start) and (number < end)):
+                if (number%2 == 0):
+                    even_num_list.append(number)
+                if (number%2 != 0):
+                    odd_num_list.append(number)
+        return(f"Even numbers between 1-100 in list {even_num_list} \n Odd numbers between 1-100 in list {odd_num_list}")
+    
+    def poss_and_neg_num_in_list(self):
+        """15.Returns possitive and negative num in list"""
+        poss_list, neg_list = [], []
+        for num in self.new_list :
+            if num > 0:
+                poss_list.append(num)
+            if num < 0:
+                neg_list.append(num)
+        return(f"Possitive numbers of list are {poss_list} \n Negative numbers of list are {neg_list}")
+    
+    def poss_neg_in_given_range(self,start,end):
+        """16.Returns possitive and negative numbers in given range inside list"""
+        poss_list, neg_list = [], []
+        for num in range(start,end+1):
+            if num in self.new_list :
+                if num < 0 :
+                    neg_list.append(num)
+                if num > 0:
+                    poss_list.append(num)
+        return(f"Possitive numbers in range are {poss_list} \n Negative numbers in range are {neg_list}")
+           
     def list_reveresed(self):
         """14.Pops element from list
         and enter the elemet in temp_list
@@ -132,18 +183,4 @@ class List_programs():
             poped_item = new_list_copy.pop(i)
             temp_list.append(poped_item)
         return(temp_list)
-   
 lp = List_programs()
-print(lp.swap_first_last())
-print(lp.swap_two_elements(2,3))
-print(lp.length_of_list())
-print(lp.is_element_in_list(5))
-print(lp.sum_of_list())
-print(lp.product_of_list())
-print(lp.smallest_num_list())
-print(lp.largest_num_list())
-print(lp.second_lar_num_list())
-print(lp.n_lar_ele_list(3))
-print(lp.even_in_list())
-print(lp.odd_in_list())
-print(lp.list_reveresed())
