@@ -1,4 +1,3 @@
-"""clear list program not done yet will do it in last"""
 """List exersises given on geeks for geeks 
 https://www.geeksforgeeks.org/python-programming-examples/#list """
 class List_programs():
@@ -11,6 +10,8 @@ class List_programs():
         self.new_list = []
         entered_list = input("Enter a list of numbers seperated by commas(,): ")
         for number in entered_list.split(','):
+            """Using this constructor automatically removes empty list
+             or tuple (if any) from the list"""
             try:
                 list_element = int(number)
                 self.new_list.append(list_element)
@@ -19,6 +20,7 @@ class List_programs():
         print(f" Orignal list is: {self.new_list}")
         if (len(self.new_list) != 0):
             print(f"List obtained after swapping fist and last element is {self.swap_first_last()}")
+            print(f"The list of cummlative sum of succesive element of list is {self.cumm_sum_list()}")
             print(f"List obtained after swapping second and third element of the list is {self.swap_two_elements(2,3)}")
             print(f"Length of the given list is {self.length_of_list()}")
             print(f"The element 7 is present in list {self.is_element_in_list(7)}")
@@ -30,10 +32,13 @@ class List_programs():
             print(f"The four largest elements of the list are {self.n_lar_ele_list(4)}")
             print(f"The even numbers in the list are {self.even_in_list()}")
             print(f"The odd numbers in the list are {self.odd_in_list()}")
-            print(self.odd_even_in_range(1,100))
+            print(f"The odd numbers in given range are {self.odd_even_in_range(1,100)} ")
             print(self.poss_and_neg_num_in_list())
             print(self.poss_neg_in_given_range(-10,10))
             print(f"List obtained by reversing every element {self.list_reveresed()}")
+            print(f"Occurances of Element 5 in list is {self.count_ele_in_list(5)}")
+            print(f"The Duplicate elements in list are {self.dup_from_list()}")
+            print(f"List after clearing all elements {self.clear_list()}")
         else:
             print("List is empty so operations cannot be performed")
 
@@ -173,9 +178,11 @@ class List_programs():
         return(f"Possitive numbers in range are {poss_list} \n Negative numbers in range are {neg_list}")
            
     def list_reveresed(self):
-        """14.Pops element from list
-        and enter the elemet in temp_list
-        in reverse order"""
+        """17.beign with an empty temp_list
+        make a copy of orignal list then use
+        for loop to pop elements from end of copy 
+        and append them to temp_list list finally 
+        return the temp_list there by automatically reversing it"""
         element_number = len(self.new_list)
         new_list_copy = self.new_list[:]
         temp_list = []
@@ -183,4 +190,36 @@ class List_programs():
             poped_item = new_list_copy.pop(i)
             temp_list.append(poped_item)
         return(temp_list)
+    def count_ele_in_list(self,element):
+        """18.Count the occurances of given element in list"""
+        count = 0
+        for num in self.new_list:
+            if num == element:
+                count+= 1
+        return count
+    
+    def clear_list(self):
+        """19.Clears the list by poping each element individually"""
+        for i in range(0,len(self.new_list)):
+            self.new_list.pop()
+        return(self.new_list)
+    
+    def dup_from_list(self):
+        """20. Returns the list of duplicate elements in the list"""
+        output_list = []
+        for num in self.new_list:
+            if (self.new_list.count(num) > 1):
+                if num not in output_list:
+                    output_list.append(num)
+        return(output_list)
+    
+    def cumm_sum_list(self):
+        """21. Returns the list of cummlative sum of elements"""
+        output_list = []
+        sum = 0
+        for num in self.new_list:
+            sum += num
+            output_list.append(sum)
+        return(output_list)
+
 lp = List_programs()
