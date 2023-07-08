@@ -17,49 +17,35 @@ class List_programs():
                 self.new_list.append(list_element)
             except:
                 ValueError(print(f"skipping the non int value {number}"))
-        print(f" Orignal list is: {self.new_list}")
-        if (len(self.new_list) != 0):
-            print(f"List obtained after swapping fist and last element is {self.swap_first_last()}")
-            print(f"The list of cummlative sum of succesive element of list is {self.cumm_sum_list()}")
-            print(f"List obtained after swapping second and third element of the list is {self.swap_two_elements(2,3)}")
-            print(f"Length of the given list is {self.length_of_list()}")
-            print(f"The element 7 is present in list {self.is_element_in_list(7)}")
-            print(f"The sum of list is {self.sum_of_list()}")
-            print(f"The product of list is {self.product_of_list()}")
-            print(f"The smallest number in the list is {self.smallest_num_list()}")
-            print(f"The largest number in the list is {self.largest_num_list()}")
-            print(f"The second largest element of the list is {self.second_lar_num_list()}")
-            print(f"The four largest elements of the list are {self.n_lar_ele_list(4)}")
-            print(f"The even numbers in the list are {self.even_in_list()}")
-            print(f"The odd numbers in the list are {self.odd_in_list()}")
-            print(f"The odd numbers in given range are {self.odd_even_in_range(1,100)} ")
-            print(self.poss_and_neg_num_in_list())
-            print(self.poss_neg_in_given_range(-10,10))
-            print(f"List obtained by reversing every element {self.list_reveresed()}")
-            print(f"Occurances of Element 5 in list is {self.count_ele_in_list(5)}")
-            print(f"The Duplicate elements in list are {self.dup_from_list()}")
-            print(f"List after clearing all elements {self.clear_list()}")
-        else:
-            print("List is empty so operations cannot be performed")
-
-    
+   
     def swap_first_last(self):
         """2.first last element swapped using temp_var"""
-        if (len(self.new_list) >=2):
-            temp_var, self.new_list[-1]= self.new_list[-1], self.new_list[0]
-            self.new_list[0] = temp_var
-            return self.new_list
-        elif (len(self.new_list) == 1):
-            return(self.new_list)
-        elif (len(self.new_list) == 0):
-            raise ValueError("Not sufficient elements in list")
+        print(f" Orignal list is: {self.new_list}")
+        try:
+            if (len(self.new_list) >=2):
+                temp_var, self.new_list[-1]= self.new_list[-1], self.new_list[0]
+                self.new_list[0] = temp_var
+                return self.new_list
+            elif (len(self.new_list) == 1):
+                return(self.new_list)
+        except:
+            ValueError(print("Number of list elements not enough to perform the operation"))
           
     def swap_two_elements(self,pos1,pos2):
-        """3.Arbitrary elements of list using
-        multiple assignment and temp_var"""
-        temp_var,self.new_list[pos1-1] = self.new_list[pos1-1],self.new_list[pos2-1]
-        self.new_list[pos2-1] = temp_var
-        return self.new_list
+        """3.Swapped arbitrary elements 
+        after first conforming the length of list 
+        appropriate for the swap and confirming the 
+        value of the two positions enterd is integer 
+        of list using multiple assignment and temp_var"""
+        print(f" Orignal list is: {self.new_list}")
+        if (len(self.new_list) >= 2):
+            try:
+                if (len(self.new_list)>= max(pos1,pos2)):
+                    temp_var,self.new_list[pos1-1] = self.new_list[pos1-1],self.new_list[pos2-1]
+                    self.new_list[pos2-1] = temp_var
+                    return self.new_list
+            except:
+                TypeError(print("Positions of list elements to be swapped must be integers"))
     
     def length_of_list(self):
         """4.Calculation of list length using for loop"""
@@ -70,30 +56,38 @@ class List_programs():
     
     def is_element_in_list(self,element):
         """5.Verifies element existance in list using 'in' operator"""
-        if (element in self.new_list):
-            return True
+        if (len(self.new_list) >= 1):
+            if (element in self.new_list):
+                return True
+            else:
+                return False
         else:
-            return False
+            return 0
     
     def sum_of_list(self):
-        """6.Restuns sum of list"""
+        """6.Restuns sum of list using a for loop"""
         sum = 0 
-        for num in self.new_list :
-            sum += num
+        if (len(self.new_list) >= 1):
+            for num in self.new_list :
+                sum += num
         return(sum)
+
     def product_of_list(self):
-        """7.Returns product of list"""
-        product = 1
-        for num in self.new_list :
-            product *= num
+        """7.Returns product of list using a for loop"""
+        product = 0
+        if (len(self.new_list) >= 1):
+            product = 1
+            for num in self.new_list :
+                product *= num
         return(product)
     
     def smallest_num_list(self):
         """8.Returns smallest num in list"""
-        smallest_num = self.new_list[0]
-        for num in self.new_list :
-            if num < smallest_num :
-                smallest_num = num
+        if (len(self.new_list) != 0):
+            smallest_num = self.new_list[0]
+            for num in self.new_list :
+                if num < smallest_num :
+                    smallest_num = num
         return(smallest_num)
     
     def largest_num_list(self):
@@ -221,5 +215,10 @@ class List_programs():
             sum += num
             output_list.append(sum)
         return(output_list)
+    
+
 
 lp = List_programs()
+print(lp.swap_first_last())
+print(lp.swap_two_elements(1,2))
+print(lp.length_of_list())
