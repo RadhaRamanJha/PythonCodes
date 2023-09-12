@@ -3,7 +3,7 @@ class array_programs:
     """Class to perform various operations on array"""
     def __init__(self, array_of_numbers):
         self.list1 = array_of_numbers
-
+        
     def sum(self):
         """Performs sum of all elements of array"""
         sum = 0
