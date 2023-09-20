@@ -1,2 +1,2 @@
 # PythonCodes
-Python Scripts and Program in this Repositiory
+Jupyter note books and python codes in this repository 
