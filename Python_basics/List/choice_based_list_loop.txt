@@ -1,0 +1,35 @@
+"""Application using list as stack"""
+even_list = []
+odd_list = []
+entered_sequence = []
+
+while True :
+
+    print("press 'q' to quit anytime")
+    temp = input("Enter your choice among (1/2/3/4) to continue: ")
+
+    if temp == 'q':
+        break
+
+    elif temp == 1:
+        current_number = input("Enter a number: ")
+        if current_number % 2 == 0:
+            even_list.append(current_number)
+            entered_sequence.append(current_number)
+        elif current_number % 2 != 0:
+            odd_list.append(current_number)
+            entered_sequence.append(current_number)
+
+    elif temp == 2:
+        poped_even_number = even_list.pop()
+        print(poped_even_number)
+
+    elif temp == 3:
+        poped_odd_number = odd_list.pop()
+        print(poped_odd_number)
+
+    elif temp == 4:
+        last_entered_number = entered_sequence.pop()
+        while (last_entered_number not in even_list) or (last_entered_number not in odd_list) :
+            last_entered_number = entered_sequence.pop()
+        print(last_entered_number)
