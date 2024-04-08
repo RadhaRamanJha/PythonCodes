@@ -1,5 +1,7 @@
 ## Python List Exercises
 from typing import List
+from operator import length_hint
+from collections import Counter
 
 #### 1. Python program to interchange first and last elements in a list
             ### Solution ###
@@ -137,7 +139,65 @@ def swapping_list_element(input_list :List,position1 :int, position2 :int) -> Li
 assert(swapping_list_element([32,35,36,24,37],1,3) == [32,24,36,35,37])
 print("Swapped list elements at mentioned location by approach 3")
 
-        
+#### 2. Python Program to Find the length of a List
+            ### Solution ###
+
+#### Approach 1 :- Using Naive Method
+def naive_list_length(input_list :List) -> int:
+    """
+    Initial value counter is set to 0,
+    increase the counter by 1 while 
+    itterating through list"""
+    counter = 0
+    for i in input_list:
+        counter+=1
+    return counter
+assert(naive_list_length([2,3,4,5,6,7]) == 6)
+print("Found List length using Approach 1")
+
+#### Approach 2 :- Using operator.length_hint() method.
+def list_length_using_operator(input_list :List) -> int:
+    """
+    Calculate the using a lesser known function 
+    of operator module i.e. length_hint
+    """
+    return length_hint(input_list)
+assert(list_length_using_operator([2,3,4,5,6,7]) == 6)
+print("Found List length using Approach 2")
+
+#### Approach 3 :- Using sum() Function with list comprehension
+def list_length_with_sum(input_list : List) -> int:
+    """
+    Using List comprehension genrate 1 for every element and 
+    sum them to find list length 
+    """
+    return sum(1 for i in input_list)
+assert(list_length_with_sum([2,3,4,5,6,7]) == 6)
+print("Found List length using Approach 3")
+
+#### Approach 4 :- Using sum() function along with counter
+def list_length_with_counter(input_list :List) -> int:
+    """ 
+    Generates the element dictionary with key as element and
+    occurance of element as it's count and returns the sum of
+    values as list length
+    """
+    list_element_dict =  Counter(input_list)
+    return sum(list_element_dict.values)
+assert(list_length_with_sum([2,3,4,5,6,7]) == 6)
+print("Found List length using Approach 4")
+
+#### Approach 5 :- Using recurrsion
+def list_length_by_recurssion(input_list :List) -> int:
+    """
+    Make a recursion call to function for the input_list without first element
+    add 1 to recurssion call further return 0 for an empty list
+    """
+    if not input_list:
+        return 0 
+    return 1+list_length_by_recurssion(input_list[1:])
+assert(list_length_by_recurssion([2,3,4,5,6,7]) == 6)
+print("Found List length using Approach 5")
 
 # lis1= [2,3,4,5,6,8]
 # print(swapping_using_slicing(lis1))
