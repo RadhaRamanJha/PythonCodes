@@ -2,6 +2,8 @@
 from typing import List
 from operator import length_hint
 from collections import Counter
+from operator import itemgetter
+import numpy as np
 
 #### 1. Python program to interchange first and last elements in a list
             ### Solution ###
@@ -199,9 +201,67 @@ def list_length_by_recurssion(input_list :List) -> int:
 assert(list_length_by_recurssion([2,3,4,5,6,7]) == 6)
 print("Found List length using Approach 5")
 
-# lis1= [2,3,4,5,6,8]
-# print(swapping_using_slicing(lis1))
-# lis2 = "a,b,c"
-# print(swapping_using_slicing(lis2))
+#### 3. Find elements of a list by indices
+#### Description:- Given two lists with elements and indices,
+#### write a Python program to find elements of list 1 at indices present in list 2. 
+            ### Solution ###
+#### Approach -1 Naive method
+def find_list_element(element_list :List, index_list :List) -> List:
+    """ 
+    Start with an empty list Loop over index_list and append elements
+    of element_list present at every each index into return_list
+    """
+    assert max(index_list) <= len(element_list)-1,"elements of index list cannot greater than equal length of element list"
+    return_list = []
+    for i in index_list:
+        return_list.append(element_list[i])
+    return return_list
 
+assert(find_list_element([1,2,3],[1,2]) == [2,3])
+print("Found list elements through Approach 1")
+
+#### Approach -2 Naive method with list comprehension
+
+def find_list_element_using_comprehension(element_list :List, index_list :List) -> List:
+    """ 
+    Returns the desired list through list comprehension 
+    """
+    assert max(index_list) <= len(element_list)-1,"elements of index list cannot greater than equal length of element list"
+    return [element_list[i] for i in index_list]
+
+assert(find_list_element_using_comprehension([1,2,3],[1,2]) == [2,3])
+print("Found list elements through Approach 2")
+
+#### Approach -3 Using Map function
+
+def list_element_using_map(element_list :List, index_list :List) -> List:
+    """
+    Applies element_list.__getitem__ function on index_list 
+    returns a map object, first converted to list then returned 
+    """
+    return list(map(element_list.__getitem__,index_list))
+assert(list_element_using_map([1,2,3],[1,2]) == [2,3])
+print("Found list elements through Approach 3")
+
+#### Approach 4 Using operator.itemgetter()
+def list_item_getter(element_list :List, index_list :List) -> List:
+    """
+    Uses item getter function of operator module which operates on two tuples.
+    First tuple containing indeces of item to extract from element_list
+    followed by element_index from which the element is to be extracted
+    the result obtained from the item geeter is a tuple hence converted to list
+    """
+    return list(itemgetter (*index_list)(element_list))
+assert(list_item_getter([1,2,3],[1,2]) == [2,3])
+print("Found list elements through Approach 4")
+
+#### Approach 5 Using numpy
+def list_of_numpy(element_list :List, index_list :List) -> List:
+    """
+    First convert the element_list into numpy array then
+    use the list of index to retrive the desired elements
+    """
+    return np.array(element_list)[index_list].tolist()
+assert(list_of_numpy([1,2,3],[1,2]) == [2,3])
+print("Found list elements through Approach 5")
 
