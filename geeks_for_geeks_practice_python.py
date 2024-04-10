@@ -1,8 +1,7 @@
 ## Python List Exercises
 from typing import List
-from operator import length_hint
+from operator import length_hint, itemgetter, countOf,contains
 from collections import Counter
-from operator import itemgetter
 import numpy as np
 
 #### 1. Python program to interchange first and last elements in a list
@@ -265,3 +264,94 @@ def list_of_numpy(element_list :List, index_list :List) -> List:
 assert(list_of_numpy([1,2,3],[1,2]) == [2,3])
 print("Found list elements through Approach 5")
 
+#### Approach 6 Using enumrate
+def list_index_enumrate(element_list :List, index_list :List) -> List:
+    """
+    First conert the element list into a {index: element} dictionary 
+    using enumrate then use getitem function on the resultant dictionary
+    for each element of the index list by get item operator([])
+    """
+    indexed_dictionary = {index:element for index,element in enumerate(element_list)}
+    return list((indexed_dictionary[i] for i in index_list))
+assert(list_index_enumrate([1,2,3],[1,2]) == [2,3])
+print("Found list elements through Approach 6")
+
+#### 3. Python program to find the String in a List
+            ### Solution ###
+#### Approach 1 :- Using the 'in' operator
+def string_in_list(input_list :List, check_string :str) -> bool: 
+    """
+    Use 'in' oprator to verify presence of string
+    in the list
+    """
+    return check_string in input_list 
+assert(string_in_list([1,'hello',2],'hello') == True)
+assert(string_in_list([1,'hello',2],'bye') == False)
+print("Checked the occurance of string in the list using approach 1")
+
+#### Approach 2 :- Using count method of the list
+def count_string_inlist(input_list :List,test_string :str) -> bool:
+    """
+    Count the occurance of string if
+    it is greater than 1 return True 
+    """
+    return input_list.count(test_string) > 0
+assert(count_string_inlist([1,'hello',2],'hello') == True)
+assert(count_string_inlist([1,'hello',2],'bye') == False)
+print("Checked the occurance of string in the list using approach 2")
+
+#### Approach 3 :- Using List Comprehension
+def lis_comp_for_str_in_list(input_list :List, test_string :str) -> bool:
+    """
+    return_list contain all occurances of test_string in input_list 
+    made by list comprehension if length of return_list > 0 return True
+    """
+    return_list = [i for i in input_list if test_string in input_list]
+    return len(return_list) > 0
+assert(lis_comp_for_str_in_list([1,'hello',2],'hello') == True)
+assert(lis_comp_for_str_in_list([1,'hello',2],'bye') == False)
+print("Checked the occurance of string in the list using approach 3")
+
+#### Approach 4 :- Using any function
+def check_str_in_list_any(input_list :List, test_string :str) -> bool:
+    """
+    Use any function to check if any element in list same as string
+    """
+    return any(test_string == i for i in input_list)
+assert(check_str_in_list_any([1,'hello',2],'hello') == True)
+assert(check_str_in_list_any([1,'hello',2],'bye') == False)
+print("Checked the occurance of string in the list using approach 4")
+
+#### Approach 5 :- Using map and find function
+def map_list_contains_str(input_list :List, test_string :str) -> bool:
+    """
+    Map the input_list to a list of strings
+    use find function on the sring_list which
+    returns -1 if test_string not found
+    """
+    string_list = list(map(str,input_list))
+    combined_str = " ".join(string_list)
+    return combined_str.find(test_string) != -1
+assert(map_list_contains_str([1,'hello',2],'hello') == True)
+assert(map_list_contains_str([1,'hello',2],'bye') == False)
+print("Checked the occurance of string in the list using approach 5")
+
+#### Approach 6 :- Using countOf method of operator module
+def countOf_str_inlist(input_list :List,test_string :str) -> bool:
+    """
+    Using operator.countOf method ensures list has atleast one count of the string
+    """
+    return countOf(input_list,test_string) != 0
+assert(countOf_str_inlist([1,'hello',2],'hello') == True)
+assert(countOf_str_inlist([1,'hello',2],'bye') == False)
+print("Checked the occurance of string in the list using approach 6")
+
+#### Approach 7 :- Using contains method of operator module
+def list_contains_str(input_list :List, test_string :str) -> bool :
+    """
+    Uses operator.contains method to check whether list contains string
+    """
+    return contains(input_list,test_string)
+assert(list_contains_str([1,'hello',2],'hello') == True)
+assert(list_contains_str([1,'hello',2],'bye') == False)
+print("Checked the occurance of string in the list using approach 7")
