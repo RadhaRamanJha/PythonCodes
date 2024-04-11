@@ -3,6 +3,7 @@ from typing import List
 from operator import length_hint, itemgetter, countOf,contains
 from collections import Counter
 import numpy as np
+import re
 
 #### 1. Python program to interchange first and last elements in a list
             ### Solution ###
@@ -355,3 +356,56 @@ def list_contains_str(input_list :List, test_string :str) -> bool :
 assert(list_contains_str([1,'hello',2],'hello') == True)
 assert(list_contains_str([1,'hello',2],'bye') == False)
 print("Checked the occurance of string in the list using approach 7")
+
+#### Approach 8 :- Using 're' module 
+def str_isinstance_research(input_list :List, test_string :str) -> bool:
+    """
+    First verify whether a list contains a string or not
+    if it contains a string, test_string is matched with
+    the contained string using re.search
+    """
+    result = False
+    for item in input_list:
+        if (isinstance(item,str)):
+            result = bool(re.search(test_string,item))
+    return result       
+
+assert(str_isinstance_research([1,'hello',2],'hello') == True)
+assert(str_isinstance_research([1,'hello',2],'bye') == False)
+print("Checked the occurance of string in the list using approach 8")
+
+#### Approach 9 :- Using ' enumrate ' function
+def str_enumrate_research(input_list :List, test_string :str) -> bool:
+    """
+    First enumrate the list, loop over enumrate object to 
+    find an instance of string object if string found compare
+    it with the test_string to check the presence
+    """
+    result = False
+    for _,item in enumerate(input_list):
+        if (isinstance(item,str)):
+            result= bool(re.search(test_string,item))
+    return result
+assert(str_enumrate_research([1,'hello',2],'hello') == True)
+assert(str_enumrate_research([1,'hello',2],'bye') == False)
+print("Checked the occurance of string in the list using approach 9")
+
+#### 4. Python Ways to find indices of value in list
+            ### Solution ###
+
+#### Approach 1 :- Naive method
+def indices_for_value_naive(input_list :List, res_value :int) -> List:
+    """
+    Start with an empty return_list, Loop through the input_list
+    check whether the res_value is equal to list element in case 
+    the values are ewual append the index value to the reurn_list
+    return the list when loop ends 
+    """
+    return_list = []
+    for i in range(len(input_list)):
+        if input_list[i] == res_value:
+            return_list.append(i)
+    return return_list
+
+assert(indices_for_value_naive([1,3,4,5,6,4,5,6,7,3,4,5],5) == [3,6,11])
+print("Found the list indices for the given value by Approach 1")
