@@ -398,7 +398,7 @@ def indices_for_value_naive(input_list :List, res_value :int) -> List:
     """
     Start with an empty return_list, Loop through the input_list
     check whether the res_value is equal to list element in case 
-    the values are ewual append the index value to the reurn_list
+    the values are equal append the index value to the return_list
     return the list when loop ends 
     """
     return_list = []
@@ -409,3 +409,47 @@ def indices_for_value_naive(input_list :List, res_value :int) -> List:
 
 assert(indices_for_value_naive([1,3,4,5,6,4,5,6,7,3,4,5],5) == [3,6,11])
 print("Found the list indices for the given value by Approach 1")
+
+#### Approach 2 :- Naive method with list comprehenssion 
+def value_indices_in_list(input_list :List, res_value :int) -> List:
+    """
+    Loop over the input_list to find the indicies having the value = res_value
+    Construct the return_list containing all indices using list comprehension 
+    """
+    return_list = [i for i in range(len(input_list)) if input_list[i] == res_value ]
+    return return_list
+assert(value_indices_in_list([1,3,4,5,6,4,5,6,7,3,4,5],5) == [3,6,11])
+print("Found the list indices for the given value by Approach 2")
+
+#### Approach 3 :- Naive method with list comprehenssion along with enumrate
+def enum_value_indices_in_list(input_list : List, res_value :int) -> List:
+    """
+    Use enumrate along with the list comprehension to create the return_list
+    """
+    return_list = [index for index,value in enumerate(input_list) if value == res_value]
+    return return_list
+assert(enum_value_indices_in_list([1,3,4,5,6,4,5,6,7,3,4,5],5) == [3,6,11])
+print("Found the list indices for the given value by Approach 3")
+
+#### Approach 4 :- Using the filter method
+def filter_value_insides_in_list(input_list :List,res_value :int) -> List:
+    """
+    Creates return_list using list comprehension using and lambda function 
+    to filter out the list indices having the value equal to res_value 
+    """
+    return_list = [i for i in filter(lambda x:input_list[x] == res_value,range(len(input_list)))]
+    return return_list
+assert(filter_value_insides_in_list([1,3,4,5,6,4,5,6,7,3,4,5],5) == [3,6,11])
+print("Found the list indices for the given value by Approach 4")
+
+#### Approach 5 :- Using the numpy library
+def numpy_tofind_index_inlist(input_list :List,res_value :int) -> List:
+    """
+    The numpy array is used to know the indices where the list has a
+    value equal to the res_value
+    """
+    test_array = np.array(input_list)
+    return_list = np.where(test_array == res_value)[0]
+    return list(return_list)
+assert(numpy_tofind_index_inlist([1,3,4,5,6,4,5,6,7,3,4,5],5) == [3,6,11])
+print("Found the list indices for the given value by Approach 5")
