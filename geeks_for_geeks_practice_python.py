@@ -2,8 +2,10 @@
 from typing import List
 from operator import length_hint, itemgetter, countOf,contains
 from collections import Counter
+import pandas as pd
 import numpy as np
 import re
+from statistics import mode
 
 #### 1. Python program to interchange first and last elements in a list
             ### Solution ###
@@ -453,3 +455,79 @@ def numpy_tofind_index_inlist(input_list :List,res_value :int) -> List:
     return list(return_list)
 assert(numpy_tofind_index_inlist([1,3,4,5,6,4,5,6,7,3,4,5],5) == [3,6,11])
 print("Found the list indices for the given value by Approach 5")
+
+#### 5. Python Find most frequent element in a list
+            ### Solution ###
+
+#### Approach 1 :- Naive Approach
+def most_frequent_in_list(input_list :List) -> int:
+    """
+    Loop over the entire list to count occurance of every element
+    For the element having highest occurance return number 
+    """
+    occurance = 0
+    num = input_list[0]
+    for i in input_list:
+        current_occurance = input_list.count(i)
+        if (current_occurance > occurance):
+            occurance = current_occurance
+            num = i
+    return num
+assert(most_frequent_in_list([1,3,5,6,4,5,6,7,3,4,5]) == 5)
+print("Found most common element of list using Approach 1")
+
+#### Approach 2 :- Pythonic Naive Approach
+def most_frequent_of_list(input_list :List) -> int:
+    """
+    Make the set of element eliminating duplicates
+    return the element of set having maximum count in list
+    """
+    return max(set(input_list),key=input_list.count)
+assert(most_frequent_of_list([1,3,5,6,4,5,6,7,3,4,5]) == 5)
+print("Found most common element of list using Approach 2")
+
+#### Approach 3 :- Using counter return the most_common element
+def most_frequent_using_counter(input_list :List) -> int:
+    """
+    Create the counter object out of list return
+    the most_common element of counter object
+    """
+    counter_list = Counter(input_list)
+    return counter_list.most_common(1)[0][0]
+assert(most_frequent_using_counter([1,3,5,6,4,5,6,7,3,4,5]) == 5)
+print("Found most common element of list using Approach 3")
+
+#### Approach 4 :- Using the mode of element in List
+def most_frequent_with_mode(input_list :List) -> int:
+    """
+    Uses mode to return the most commonly 
+    occuring element of the list
+    """
+    return mode(input_list)
+assert(most_frequent_with_mode([1,3,5,6,4,5,6,7,3,4,5]) == 5)
+print("Found most common element of list using Approach 4")
+
+#### Approach 5 :- Using the python dictionary
+def most_frequent_with_pyton_dict(input_list :List) -> int:
+    """
+    Using python dictionary to store list element as key
+    and the occurance of element as its value
+    """
+    dict = {}
+    max_count, element = 0, ''
+    for item in input_list:
+        dict[item] = dict.get(item,0)+1
+        if dict[item] >= max_count:
+            max_count,itm = dict[item],item
+    return itm
+assert(most_frequent_with_pyton_dict([1,3,5,6,4,5,6,7,3,4,5]) == 5)
+print("Found most common element of list using Approach 5")
+
+#### Approach 6 :- Using the pandas library
+def most_frequent_item_list_using_pandas(input_list :List) -> List:
+    """
+    Create a Data Frame using the inout_list further create a new
+    data frame using the value_counts() returns the count based on
+    the grouped column values 
+    """
+    df = pd.DataFrame({'Number':List})
