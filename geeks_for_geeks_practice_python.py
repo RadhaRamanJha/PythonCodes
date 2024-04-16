@@ -5,6 +5,7 @@ from collections import Counter
 import pandas as pd
 import numpy as np
 import re
+import itertools
 from statistics import mode
 
 #### 1. Python program to interchange first and last elements in a list
@@ -523,11 +524,86 @@ def most_frequent_with_pyton_dict(input_list :List) -> int:
 assert(most_frequent_with_pyton_dict([1,3,5,6,4,5,6,7,3,4,5]) == 5)
 print("Found most common element of list using Approach 5")
 
-#### Approach 6 :- Using the pandas library
-def most_frequent_item_list_using_pandas(input_list :List) -> List:
+#### 6.. Python Remove an Item from the List in Python
+            ### Solution ###
+#### Approach 1 :- Using while loop and remove
+def remove_element_from_list(input_list :List,num :int) -> List:
     """
-    Create a Data Frame using the inout_list further create a new
-    data frame using the value_counts() returns the count based on
-    the grouped column values 
+    Removing all instance of number present using 
+    while and remove to remove all element in list
     """
-    df = pd.DataFrame({'Number':List})
+    return_list = input_list
+    while num in return_list:
+        return_list.remove(num)
+    return return_list
+assert(remove_element_from_list([1,2,3,4,5,5,6,7,4,2,8,5,3],5) == [1, 2, 3, 4, 6, 7, 4, 2, 8, 3])
+print("Removed all instances of num from list using Approach 1")
+
+#### Approach 2 :- Using while loop, index and delete
+def remove_all_num_input_list(input_list :List, num :int) -> List:
+    """
+    Use index method to find the index of num in list
+    using while loop to ensure all the instances of num removed
+    """
+    while num in input_list:
+        del input_list[input_list.index(num)]
+    return input_list
+assert(remove_all_num_input_list([1,2,3,4,5,5,6,7,4,2,8,5,3],5) == [1, 2, 3, 4, 6, 7, 4, 2, 8, 3])
+print("Removed all instances of num from list using Approach 2")
+
+#### Approach 3 :- Using the list comprehension
+def list_comp_remove_num(input_list :List, num :int) -> List:
+    """
+    Using list comprehension to add all element in return list except num
+    """
+    return_list = [ele for ele in input_list if ele != num]
+    return return_list
+assert(list_comp_remove_num([1,2,3,4,5,5,6,7,4,2,8,5,3],5) == [1, 2, 3, 4, 6, 7, 4, 2, 8, 3])
+print("Removed all instances of num from list using Approach 3")
+
+#### Approach 4 :- Using pop to remove element from list
+def list_pop_remove_num(input_list :List, num :int) -> List:
+    """
+    Using pop, index and while to remove all occurance of num in list
+    """
+    return_list = input_list
+    while num in return_list:
+        return_list.pop(return_list.index(num))
+    return return_list
+assert(list_pop_remove_num([1,2,3,4,5,5,6,7,4,2,8,5,3],5) == [1, 2, 3, 4, 6, 7, 4, 2, 8, 3])
+print("Removed all instances of num from list using Approach 4")
+
+#### Approach 5 :- Using discrad method of set to remove element from list
+def discard_element_lst(input_list :List, num :int) -> List:
+    """
+    Convert the list into set and then discard num from the set
+    but this method will not work properly if any number
+    other than that to be discarded is repeated in list
+    """
+    lst = set(input_list)
+    lst.discard(num)
+    return list(lst)
+assert(discard_element_lst([1,2,3,4,5,5,6,7,8,5],5) == [1, 2, 3, 4, 6, 7, 8])
+print("Removed all instances of num from list using Approach 5")
+
+#### Approach 6 :- Using filter on the list
+def filter_element_lst(input_list :List, num :int) -> List:
+    """
+    Filter the elemets of input_list which are not equal to num
+    which check it using lambda function then return the filtered lsit
+    """
+    return_list = list(filter(lambda item: item != num,input_list))
+    return return_list
+assert(filter_element_lst([1,2,3,4,5,5,6,7,4,2,8,5,3],5) == [1, 2, 3, 4, 6, 7, 4, 2, 8, 3])
+print("Removed all instances of num from list using Approach 6")
+
+#### Approach 7 :- Using itertools.filterfalse
+def filterfalse_element_lst(input_list :List, num :int) -> List:
+    """
+    Use the filter false method of itertools to get a list which
+    does not contain 'num' element
+    """
+    filtered_list = list(itertools.filterfalse(lambda x : x == num , input_list))
+    return filtered_list
+assert(filterfalse_element_lst([1,2,3,4,5,5,6,7,4,2,8,5,3],5) == [1, 2, 3, 4, 6, 7, 4, 2, 8, 3])
+print("Removed all instances of num from list using Approach 7")
