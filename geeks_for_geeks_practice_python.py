@@ -524,7 +524,7 @@ def most_frequent_with_pyton_dict(input_list :List) -> int:
 assert(most_frequent_with_pyton_dict([1,3,5,6,4,5,6,7,3,4,5]) == 5)
 print("Found most common element of list using Approach 5")
 
-#### 6.. Python Remove an Item from the List in Python
+#### 6.. Python Remove a Given element from the List
             ### Solution ###
 #### Approach 1 :- Using while loop and remove
 def remove_element_from_list(input_list :List,num :int) -> List:
@@ -607,3 +607,41 @@ def filterfalse_element_lst(input_list :List, num :int) -> List:
     return filtered_list
 assert(filterfalse_element_lst([1,2,3,4,5,5,6,7,4,2,8,5,3],5) == [1, 2, 3, 4, 6, 7, 4, 2, 8, 3])
 print("Removed all instances of num from list using Approach 7")
+
+#### 7. Python Remove multiple elements from a list based on given condition say even numbers or a given list
+            ### Solution ###
+
+#### Approach 1 :- Naive Method
+def remove_even_num(input_list :List) -> List:
+    """
+    Filtering the even number out of list using 
+    remove to remove the element from list
+    """
+    return_list = input_list.copy()
+    for num in input_list:
+        if num%2 == 0:
+            return_list.remove(num)
+    return return_list
+assert(remove_even_num([2,3,4,5,6,7,2,4,6,5,7,8]) == [3,5,7,5,7])
+print("Removed all the even numbers out of list using Approach 1")
+
+#### Approach 2 :- List Comprehension
+def liscomp_remove_even_num(input_list :List) -> List:
+    """
+    Use list comprehension to return a list which has all
+    elements of input list except the even numbers
+    """
+    return_list = [ele for ele in input_list if ele%2!=0]
+    return return_list
+assert(liscomp_remove_even_num([2,3,4,5,6,7,2,4,6,5,7,8]) == [3,5,7,5,7])
+print("Removed all the even numbers out of list using Approach 2")
+
+#### Approach 3 :- Using enumrate
+def enum_remove_even_num(input_list :List) -> List:
+    """
+    Use enum and list comprehension to filter out the even numbers from list
+    """
+    return_list = [value for _,value in enumerate(input_list) if value%2 != 0]
+    return return_list
+assert(enum_remove_even_num([2,3,4,5,6,7,2,4,6,5,7,8]) == [3,5,7,5,7])
+print("Removed all the even numbers out of list using Approach 3")
